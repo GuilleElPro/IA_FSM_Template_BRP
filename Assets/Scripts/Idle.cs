@@ -13,6 +13,7 @@ public class Idle : State //Clase Idle que hereda de State
     public override void Enter()
     {
         //TODO
+        anim.SetTrigger("isIdle"); //Activamos la animacion Idle
         base.Enter(); //Aqui ya se hace stage = EVENT.UPDATE;, no necesitamos hacerlo aqui
     }
 
@@ -20,11 +21,16 @@ public class Idle : State //Clase Idle que hereda de State
     public override void Update()
     {
         //TODO
-        stage = EVENT.EXIT;
+        for(float time=0; time <= 10f; time += Time.deltaTime)
+        if (time >= 10f)
+        {
+            stage = EVENT.EXIT;
+        }
     }
     public override void Exit()
     {
         //TODO
+        anim.ResetTrigger("isIdle"); //Desactivamos la animacion Idle
         base.Exit();
     }
 }

@@ -53,11 +53,26 @@ public class State
         return this; //Devolvemos el mismo estado
     }
 
+
+
+
+    
+
+
     //Estas funciones deberian estar en otro fichero CS, pero para poder
     //seguir mejor el codigo lo pondremos todo aqui
     public bool CanSeePlayer()
     {
         //TODO  
+        float distance = Vector3.Distance(npc.transform.position, player.position);
+
+        float angle = Vector3.Angle(npc.transform.forward, player.transform.position - npc.transform.position);
+
+        if (distance < visDist&& angle < visAngle)
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -65,12 +80,31 @@ public class State
     public bool IsPlayerBehind()
     {
         //TODO  
+
+        float distance = Vector3.Distance(npc.transform.position, player.position);
+
+        float angle = Vector3.Angle(-npc.transform.forward, player.transform.position - npc.transform.position);
+
+        if (distance < 2.0f && angle < 30.0f)
+        {
+            return true;
+        }
+
         return false;
     }
-
+    
     public bool CanAttackPlayer()
     {
         //TODO  
+
+        float distance = Vector3.Distance(npc.transform.position, player.position);
+
+        if (distance < shootDist)
+        {
+            return true;
+        }
+
+
         return false;
     }
 }
