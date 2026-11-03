@@ -21,11 +21,13 @@ public class Idle : State //Clase Idle que hereda de State
     public override void Update()
     {
         //TODO
-        for(float time=0; time <= 10f; time += Time.deltaTime)
+        float time = Time.deltaTime;
         if (time >= 10f)
-        {
-            stage = EVENT.EXIT;
-        }
+            {
+                nextState = new Patrol(npc, agent, anim, player);
+                stage = EVENT.EXIT;
+            }
+        
     }
     public override void Exit()
     {
